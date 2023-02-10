@@ -1,0 +1,223 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.10.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-1">
+        <createTable tableName="brand_car">
+            <column name="brandCar_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="brandCar_name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-2">
+        <createTable tableName="car">
+            <column name="car_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="car_year" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_color" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="typeCarBody" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fuel_car_type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_automat" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_climate" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_price" type="DECIMAL(6, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modelCar_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-3">
+        <createTable tableName="car_picture">
+            <column name="carPicture_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="picture" type="MEDIUMBLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-4">
+        <createTable tableName="model_car">
+            <column name="modelCar_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="modelCar_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="brandCar_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-5">
+        <createTable tableName="order_car">
+            <column name="order_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="dateOfOrder" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="orderStartDate" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordeEndDate" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="orderTotalPrice" type="DECIMAL(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_status" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INT"/>
+            <column name="car_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-6">
+        <createTable tableName="user">
+            <column name="user_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_enum" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-7">
+        <createTable tableName="user_details">
+            <column name="user_details_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phoneNumber" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="birth_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-8">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/brand_car.csv" quotchar="&quot;" separator="," tableName="brand_car">
+            <column header="brandCar_id" name="brandCar_id" type="NUMERIC"/>
+            <column header="brandCar_name" name="brandCar_name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-9">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/car.csv" quotchar="&quot;" separator="," tableName="car">
+            <column header="car_id" name="car_id" type="NUMERIC"/>
+            <column header="car_year" name="car_year" type="NUMERIC"/>
+            <column header="car_color" name="car_color" type="STRING"/>
+            <column header="typeCarBody" name="typeCarBody" type="NUMERIC"/>
+            <column header="fuel_car_type" name="fuel_car_type" type="NUMERIC"/>
+            <column header="car_automat" name="car_automat" type="BOOLEAN"/>
+            <column header="car_climate" name="car_climate" type="BOOLEAN"/>
+            <column header="car_price" name="car_price" type="NUMERIC"/>
+            <column header="modelCar_id" name="modelCar_id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-10">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/car_picture.csv" quotchar="&quot;" separator="," tableName="car_picture">
+            <column header="carPicture_id" name="carPicture_id" type="NUMERIC"/>
+            <column header="picture" name="picture" type="BLOB"/>
+            <column header="car_id" name="car_id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-11">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/model_car.csv" quotchar="&quot;" separator="," tableName="model_car">
+            <column header="modelCar_id" name="modelCar_id" type="NUMERIC"/>
+            <column header="modelCar_name" name="modelCar_name" type="STRING"/>
+            <column header="brandCar_id" name="brandCar_id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-12">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/user.csv" quotchar="&quot;" separator="," tableName="user">
+            <column header="user_id" name="user_id" type="NUMERIC"/>
+            <column header="user_email" name="user_email" type="STRING"/>
+            <column header="password" name="password" type="STRING"/>
+            <column header="role_enum" name="role_enum" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-13">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/user_details.csv" quotchar="&quot;" separator="," tableName="user_details">
+            <column header="user_details_id" name="user_details_id" type="NUMERIC"/>
+            <column header="first_name" name="first_name" type="STRING"/>
+            <column header="last_name" name="last_name" type="STRING"/>
+            <column header="phoneNumber" name="phoneNumber" type="STRING"/>
+            <column header="birth_date" name="birth_date" type="DATE"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-14">
+        <addUniqueConstraint columnNames="modelCar_name, brandCar_id" constraintName="un_modelCar_name" tableName="model_car"/>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-15">
+        <createIndex indexName="FK_CAR_ON_MODELCAR" tableName="car">
+            <column name="modelCar_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-16">
+        <createIndex indexName="FK_CAR_PICTURE_ON_CAR" tableName="car_picture">
+            <column name="car_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-17">
+        <createIndex indexName="FK_MODEL_CAR_ON_BRANDCAR" tableName="model_car">
+            <column name="brandCar_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-18">
+        <createIndex indexName="FK_ORDER_CAR_ON_CAR" tableName="order_car">
+            <column name="car_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-19">
+        <createIndex indexName="FK_ORDER_CAR_ON_USER" tableName="order_car">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-20">
+        <addForeignKeyConstraint baseColumnNames="modelCar_id" baseTableName="car" constraintName="FK_CAR_ON_MODELCAR" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="modelCar_id" referencedTableName="model_car" validate="true"/>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-21">
+        <addForeignKeyConstraint baseColumnNames="car_id" baseTableName="car_picture" constraintName="FK_CAR_PICTURE_ON_CAR" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="car_id" referencedTableName="car" validate="true"/>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-22">
+        <addForeignKeyConstraint baseColumnNames="brandCar_id" baseTableName="model_car" constraintName="FK_MODEL_CAR_ON_BRANDCAR" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="brandCar_id" referencedTableName="brand_car" validate="true"/>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-23">
+        <addForeignKeyConstraint baseColumnNames="car_id" baseTableName="order_car" constraintName="FK_ORDER_CAR_ON_CAR" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="car_id" referencedTableName="car" validate="true"/>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-24">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="order_car" constraintName="FK_ORDER_CAR_ON_USER" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="user_id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="Bogdanovsky Dmitry (generated)" id="1675690366399-25">
+        <addForeignKeyConstraint baseColumnNames="user_details_id" baseTableName="user_details" constraintName="FK_USER_DETAILS_ON_USER_DETAILS" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="user_id" referencedTableName="user" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

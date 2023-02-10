@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <user user_id="1" user_email="admin@admin.com" password="admin" role_enum="ADMIN"/>
+    <user_details user_details_id="1"  first_name="Admin" last_name="AdminAdmin" phoneNumber="+375(29)3334455"
+                 birth_date="2020-08-08" />
+    <user user_id="2" user_email="user@user.com" password="123" role_enum="USER"/>
+    <user_details user_details_id="2"  first_name="User" last_name="The User" phoneNumber="+375(29)1112233"
+                 birth_date="2020-10-10" />
+
+    <brand_car brandCar_id="1" brandCar_name="BMW"/>
+    <brand_car brandCar_id="2" brandCar_name="Mercedes-Benz"/>
+    <brand_car brandCar_id="3" brandCar_name="Alfa Romeo"/>
+    <brand_car brandCar_id="4" brandCar_name="AUDI"/>
+
+
+    <model_car modelCar_id="1" modelCar_name="X1" brandCar_id="1"/>
+    <model_car modelCar_id="2" modelCar_name="X3" brandCar_id="1"/>
+    <model_car modelCar_id="3" modelCar_name="X5" brandCar_id="1"/>
+
+    <model_car modelCar_id="4" modelCar_name="C class" brandCar_id="2"/>
+    <model_car modelCar_id="5" modelCar_name="E class" brandCar_id="2"/>
+    <model_car modelCar_id="6" modelCar_name="S class" brandCar_id="2"/>
+
+    <model_car modelCar_id="7" modelCar_name="GIULIA" brandCar_id="3"/>
+    <model_car modelCar_id="8" modelCar_name="STELVIO" brandCar_id="3"/>
+    <model_car modelCar_id="9" modelCar_name="TONALE HYBRID" brandCar_id="3"/>
+
+    <model_car modelCar_id="10" modelCar_name="Q7" brandCar_id="4"/>
+    <model_car modelCar_id="11" modelCar_name="Q4" brandCar_id="4"/>
+    <model_car modelCar_id="12" modelCar_name="Q3" brandCar_id="4"/>
+
+    <car car_id="1" car_year="2020" car_color="RED" typeCarBody="4" fuel_car_type="0" car_price="200.5"
+         car_automat="true" car_climate="true" modelCar_id="7"/>
+    <car car_id="2" car_year="2020" car_color="RED" typeCarBody="0" fuel_car_type="0" car_price="150.5"
+         car_automat="true" car_climate="true" modelCar_id="8"/>
+    <car car_id="3" car_year="2020" car_color="RED" typeCarBody="0" fuel_car_type="3" car_price="150.5"
+         car_automat="true" car_climate="true" modelCar_id="9"/>
+
+
+    <order_car order_id="1" dateOfOrder="2023-01-22" orderStartDate="2023-01-22" ordeEndDate="2023-01-23"
+               orderTotalPrice="401.00" order_status="0"  car_id="1" user_id="2"/>
+    <order_car order_id="2" dateOfOrder="2023-01-20" orderStartDate="2023-01-20" ordeEndDate="2023-01-23"
+               orderTotalPrice="401.00" order_status="0"  car_id="1" user_id="2"/>
+    <order_car order_id="3" dateOfOrder="2023-01-18" orderStartDate="2023-01-18" ordeEndDate="2023-01-23"
+               orderTotalPrice="401.00" order_status="0"  car_id="1" user_id="1"/>
+    <order_car order_id="4" dateOfOrder="2023-01-22" orderStartDate="2023-01-22" ordeEndDate="2023-01-23"
+               orderTotalPrice="401.00" order_status="0"  car_id="3" user_id="1"/>
+    <order_car order_id="5" dateOfOrder="2023-01-22" orderStartDate="2023-01-22" ordeEndDate="2023-01-23"
+               orderTotalPrice="401.00" order_status="1"  car_id="3" user_id="1"/>
+    <order_car order_id="6" dateOfOrder="2023-01-22" orderStartDate="2023-01-22" ordeEndDate="2023-01-23"
+               orderTotalPrice="401.00" order_status="1"  car_id="3" user_id="2"/>
+    <order_car order_id="7" dateOfOrder="2023-01-22" orderStartDate="2023-01-22" ordeEndDate="2023-01-23"
+               orderTotalPrice="401.00" order_status="1"  car_id="2" user_id="1"/>
+    <order_car order_id="8" dateOfOrder="2023-01-22" orderStartDate="2023-01-22" ordeEndDate="2023-01-23"
+               orderTotalPrice="401.00" order_status="1"  car_id="2" user_id="2"/>
+    <order_car order_id="9" dateOfOrder="2023-01-22" orderStartDate="2023-01-22" ordeEndDate="2023-01-23"
+               orderTotalPrice="401.00" order_status="2"  car_id="2" user_id="2"/>
+    <order_car order_id="10" dateOfOrder="2023-01-22" orderStartDate="2023-01-22" ordeEndDate="2023-01-23"
+               orderTotalPrice="401.00" order_status="2"  car_id="1" user_id="2"/>
+
+</dataset>
