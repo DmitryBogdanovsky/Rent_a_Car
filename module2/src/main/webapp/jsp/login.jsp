@@ -1,61 +1,93 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Rent a Car</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
-</head>
-<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<header>
-    <%@include file="header_of_page.jsp" %>
-</header>
+<%@include file="header.jsp" %>
 
-<div class="bg">
-    <section class="vh-100 gradient-custom">
-        <div class="container py-5 h-100">
-            <div class="row justify-content-center align-items-center h-100">
-                <div class="col-12 col-lg-9 col-xl-7">
-                    <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                        <div class="card-body p-4 p-md-5">
-                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Login Form</h3>
-                            <form name='f' action="${pageContext.request.contextPath}/login" method='POST'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_login.css">
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-
-                                        <div class="form-outline">
-                                            <input type="text" name="username" id="username" class="form-control form-control-lg" />
-                                            <label class="form-label" for="username">Login (email)</label>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-
-                                        <div class="form-outline">
-                                            <input type="password" name="password" id="password" class="form-control form-control-lg" />
-                                            <label class="form-label" for="password">Password</label>
-                                        </div>
-
+<div class="section">
+    <div class="container">
+        <div class="row full-height justify-content-center">
+            <div class="col-12 text-center align-self-center py-5">
+                <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                    <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+                    <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                    <label for="reg-log"></label>
+                    <div class="card-3d-wrap mx-auto">
+                        <div class="card-3d-wrapper">
+                            <div class="card-front">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-4 pb-3">Log In</h4>
+                                        <form method="POST" action="${pageContext.request.contextPath}/login">
+                                            <div class="form-group" >
+                                                <input type="email" name="username" class="form-style"
+                                                       placeholder="Your Email" id="username" autocomplete="on">
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="password" class="form-style"
+                                                       placeholder="Your Password" id="password" autocomplete="off">
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                                <button class="btn mt-4-primary btn-lg">submit</button>
+                                        </form>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="mt-4 pt-2">
-                                    <input class="btn btn-primary btn-lg" type="submit" value="LogIn" />
+
+                            <div class="card-back">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-4 pb-3">Sign Up</h4>
+                                      <form method="post" action="${pageContext.request.contextPath}/registration.action"  modelAttribute="user">
+                                        <div class="form-group">
+                                            <input type="text" name="userDetails.firstName" class="form-style"
+                                                   placeholder="First Name" id="firstName" autocomplete="on">
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input type="text" name="userDetails.lastName" class="form-style"
+                                                   placeholder="Last Name" id="lastName" autocomplete="on">
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>
+
+                                        <div class="form-group mt-3">
+                                            <input type="tel" name="userDetails.phoneNumber" class="form-style"
+                                                   placeholder="Phone number" id="phoneNumber" autocomplete="on">
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <input type="date" name="userDetails.birthDate" class="form-style"
+                                                   placeholder="Your Birth day" id="birthDate" autocomplete="on">
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>
+
+                                        <div class="form-group mt-3">
+                                            <input type="email" name="email" class="form-style" placeholder="Your Email"
+                                                   id="email" autocomplete="on">
+                                            <i class="input-icon uil uil-at"></i>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <input type="password" name="password" class="form-style"
+                                                   placeholder="Your Password" id="regPassword" autocomplete="on">
+                                            <i class="input-icon uil uil-lock-alt"></i>
+                                        </div>
+                                        <button class="btn mt-4-primary btn-lg">submit</button>
+                                          <p class="mb-0 mt-4 text-center"><a href="${pageContext.request.contextPath}/login.view" class="link">>Have already an account?</a></p>
+                                      </form>
+                                    </div>
                                 </div>
-
-                                <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a href="${pageContext.request.contextPath}/registration.view"
-                                                                                                      class="fw-bold text-body"><u>Create new</u></a></p>
-
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>
-</body>
-</html>
+
+<%@include file="footer.jsp" %>
+

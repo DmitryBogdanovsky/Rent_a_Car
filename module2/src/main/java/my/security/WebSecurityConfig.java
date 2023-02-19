@@ -1,6 +1,7 @@
 package my.security;
 
 
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @SuppressWarnings("deprecation")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
@@ -26,6 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/index.html").permitAll()
                 .antMatchers("/login*").permitAll()
+                .antMatchers("/car-list").permitAll()
+                .antMatchers("/car-show/**").permitAll()
                 .antMatchers("/create_car*").hasRole("ADMIN")
                 .antMatchers("/delete_car*").hasRole("ADMIN")
                 .antMatchers("/update_car*").hasRole("ADMIN")
@@ -34,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.view")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/index.html", true)
-                .failureUrl("/registration.view")
+                .failureUrl("/login.view")
                 .and()
                 .logout()
                 .deleteCookies("JSESSIONID");
@@ -45,3 +47,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(service);
     }
 }
+

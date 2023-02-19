@@ -1,80 +1,137 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<html lang="en">
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rent a Car</title>
+    <!-- Bootstrap CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 
 </head>
-
+<body>
+<!--Main Navigation-->
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container-fluid">
-      <button
-              class="navbar-toggler"
-              type="button"
-              data-mdb-toggle="collapse"
-              data-mdb-target="#navbarExample01"
-              aria-controls="navbarExample01"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarExample01">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/index.html">Home</a>
-          </li>
 
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(0, 0, 0,100.0);">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+                 <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/list_cars/1.view">Choose a car</a>
+                    </li>
 
-          <div class="dropdown open">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Show cars
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/list_cars/1.view">Choose a car</a>
-              <c:forEach items="${brandss}" var="brands">
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/list_cars.view?model=${brands}">Show car ${brands}</a>
-              </c:forEach>
+                    <security:authorize access="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Edit
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/add-brand.view">Add brand</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/add-model.view">Add model</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       href="${pageContext.request.contextPath}/add-car.view">Add car</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </security:authorize>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">List
+                        </a>
+                        <ul class="dropdown-menu">
+                            <security:authorize access="isAuthenticated()">
+                                <li>
+                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/brand-list.view">List brands</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/model-list.view">List models</a>
+                                </li>
+                            </security:authorize>
+                            <li>
+                                <a class="dropdown-item"
+                                   href="${pageContext.request.contextPath}/car-list.view">List cars</a>
+                            </li>
+                            <security:authorize access="hasRole('ROLE_ADMIN')">
+                                <div class="dropdown-divider"></div>
+                                <li>
+                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/user-list.view">List user</a>
+                                </li>
+                                <div class="dropdown-divider"></div>
+                                <li>
+                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/order-list.view">List order</a>
+                                </li>
+                            </security:authorize>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Left links -->
             </div>
-          </div>
+            <!-- Collapsible wrapper -->
 
-          <li class="nav-item">
+            <!-- Right elements -->
+              <ul class="navbar-nav mb-2 mb-lg-0">
+<%--                <div class="d-flex align-items-center">--%>
+                    <li class="d-flex nav-item dropdown">
+                        <security:authorize access="isAnonymous()">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Anonymous</a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item"
+                                       href="${pageContext.request.contextPath}/login.view">LogIn/SignUp</a>
+                                </li>
+                            </ul>
+                        </security:authorize>
+                        <security:authorize access="isAuthenticated()">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false"><security:authentication property="name"/></a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user-profile.view">
+                                    Personal profile</a>
+                                </li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user-orders.view">
+                                    My orders</a>
+                                </li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Logout</a>
+                                </li>
+                            </ul>
+                        </security:authorize>
+                    </li>
+<%--                </div>--%>
+              </ul>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
 
-            <security:authorize access="isAuthenticated()">
-              <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
-            </security:authorize>
-            <security:authorize access="!isAuthenticated()">
-              <a class="nav-link" href="${pageContext.request.contextPath}/login.view">Login</a>
-            </security:authorize>
-
-          </li>
-          <li class="nav-item">
-            <security:authorize access="!isAuthenticated()">
-              <a class="nav-link" href="${pageContext.request.contextPath}/registration.view">Registration</a>
-            </security:authorize>
-          </li>
-
-          <li class="nav-item">
-            <security:authorize access="isAuthenticated()">
-              <a class="nav-link" href="${pageContext.request.contextPath}/personal_page.view">User account</a>
-            </security:authorize>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 </header>
+<!--Main Navigation-->
 
-  </nav>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</body>
+
 </html>

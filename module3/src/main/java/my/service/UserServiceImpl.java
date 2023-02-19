@@ -12,23 +12,18 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Validator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
 
-    @Autowired
-    private Validator validator;
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
@@ -51,6 +46,8 @@ public class UserServiceImpl implements UserService{
             throw new MyException("User already exists! Id: " + user.getId());
         }
         user.getUserDetails().setUser(user);
+        user.setPassword("{noop}" +  user.getPassword());
+
         user.setRoleEnum(RoleEnum.valueOf(DEFAULT_ROLE));
 
         return modelMapper.map(userRepository.save(user), UserResponseDto.class);
@@ -59,7 +56,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserResponseDto updateUser(UserDto updateUser) {
         User user =userRepository.findById(updateUser.getId())
-                .orElseThrow(() -> new MyException("Brand car not found!: " + updateUser.getId()));
+                .orElseThrow(() -> new MyException("User not found!: " + updateUser.getId()));
         user.setEmail(updateUser.getEmail());
         return modelMapper.map(userRepository.save(user), UserResponseDto.class);
     }
